@@ -1,10 +1,4 @@
-#install if necessary
-source("http://bioconductor.org/biocLite.R")
-
-biocLite('ShortRead')
-biocLite("Rsamtools")
-biocLite('VariantAnnotation')
-
+#source("http://bioconductor.org/biocLite.R")
 #load library
 library(Rsamtools)
 library(VariantAnnotation)
@@ -14,7 +8,6 @@ library(tidyverse)
 library(Biostrings)
 
 #------------Functions to use
-
 #---Take n random positions from every exon and create data.frame with all info
 create_exon_snps_per_gene <- function(gene, gtf, nrand=2){
   
