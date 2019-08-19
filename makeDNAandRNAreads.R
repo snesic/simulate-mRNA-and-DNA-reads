@@ -7,14 +7,15 @@ fa <- readDNAStringSet(fileFA, format='fasta')
 gtf <- readGFF(fileGTF)
 gtf = gtf[,c('seqid', 'type', 'gene_biotype', 'start', 'end', 'strand', 'gene_id', 'gene_name', 'transcript_id')]
 
-#--Define read quality
-quality = "@ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-quals = paste(strsplit(quality,'', fixed=TRUE)[[1]][round(15 - 5/(seq(1,read_size, 1)**0.05))], collapse = '')
-
 read_size = 75
 coverage = 10
 shift = 150
 upDownStream = 100
+
+#--Define read quality
+quality = "@ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+quals = paste(strsplit(quality,'', fixed=TRUE)[[1]][round(15 - 5/(seq(1,read_size, 1)**0.05))], collapse = '')
+
 
 # List of genes in GTF and their positions
 
@@ -62,7 +63,7 @@ for(i in c(1,6,12,18)){
 
     #-----------Create mRNA reads-------------------
     #---Define number of trascripts
-    transcriptsCount = create_transcript_count(exons, ar1, ar2) # sample rundom numbers from the arrays
+    transcriptsCount = create_transcript_count(exons, ar1, ar2) # sample random numbers from the arrays
     snps = snps %>% left_join(transcriptsCount, by = 'transcript')
     snps[snps$phased == "0|1", c("c1", "c2")] <- snps[snps$phased == "0|1", c("c2", "c1")]
 

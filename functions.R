@@ -140,10 +140,10 @@ reads_to_fastq <- function(read, read_size = 75, shift = 150, coverage = 10){
 
 #-- Noise to transcripts 
 
-noise_to_transcripts <- function(m, percent=1){
+noise_to_transcripts <- function(m, percent = 1){
   m = DNAString(m)
   bases = c('A','T','C','G')
-  s = round(percent * nchar(p) / 100 )
+  s = round(percent * nchar(m) / 100 )
   if(s==0) return(as.character(m))
   p = IRanges(start=sample(1:nchar(m), s, replace = T), width = 1)
   let = extractAt(m, at = p)
